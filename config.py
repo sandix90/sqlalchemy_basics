@@ -1,0 +1,5 @@
+DATABASE_USER = 'thor'
+DATABASE_PASSWORD = 'thunder'
+DATABASE_HOST = 'localhost'
+DATABASE_PORT = '5432'
+DATABASE_NAME = 'article_db'
