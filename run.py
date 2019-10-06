@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from db.base import DBSession
-from lessons.lesson1 import get_one_employee
+from lessons.lesson1 import get_one_employee, get_employee_by_name
 from lessons.lesson2 import get_all_departments
 from lessons.lesson3 import check_department_exists, get_departments_count, get_departments_func_count
 from lessons.lesson4 import dynamic_filter, DFilter, StatusGroup
@@ -25,8 +25,11 @@ def lesson_separation():
     print('_'*5)
 
 
+tony_stark = get_employee_by_name(db_session, first_name='Tony', last_name='Stark')
+
+
 print('Lesson 1: get employee by id')
-get_one_employee(db_session, 2)
+get_one_employee(db_session, tony_stark.id)
 lesson_separation()
 
 print('Lesson 2: get all departments')
@@ -56,7 +59,7 @@ lesson_separation()
 
 print('Lession 5: many-to-many')
 
-employees_with_skills = get_employee_with_skills(session=db_session, eid=2)
+employees_with_skills = get_employee_with_skills(session=db_session, eid=tony_stark.id)
 for e in employees_with_skills:
     print(f'Employee {e} has skills:')
     for skill in e.skills:
@@ -70,7 +73,7 @@ for e in employees:
 lesson_separation()
 
 print(f'Lession 7: aggregations in relationship')
-employee = aggragate_func_in_relatioship(db_session, uid=2)
+employee = aggragate_func_in_relatioship(db_session, uid=tony_stark.id)
 print(employee)
 
 
